@@ -1,6 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+
+declare global {
+  interface Window {
+    Tally: any;
+  }
+}
 
 const Contact: React.FC = () => {
+  useEffect(() => {
+    if (window.Tally) {
+      window.Tally.loadEmbeds();
+    }
+  }, []);
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-6 pt-24 bg-transparent">
       <h1 className="text-4xl font-bold text-white mb-8">Contact Us</h1>
@@ -8,7 +20,6 @@ const Contact: React.FC = () => {
       <div className="w-full max-w-4xl bg-gray-800/50 rounded-xl p-8 border border-gray-700">
         <p className="text-gray-300 mb-6 text-center">Have questions or need assistance? Fill out the form below and our team will get back to you as soon as possible.</p>
         <iframe data-tally-src="https://tally.so/embed/3xbDo5?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="276" frameBorder="0" marginHeight="0" marginWidth="0" title="Contact form"></iframe>
-      </div>
       </div>
       
       <div className="w-full max-w-4xl mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
